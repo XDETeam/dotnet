@@ -1,8 +1,5 @@
 ﻿namespace Sde.Social
 {
-    /// <summary>
-    /// TODO:
-    /// </summary>
     public class PersonSample
     {
         public static PersonSample Alice = new PersonSample
