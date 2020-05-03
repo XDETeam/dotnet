@@ -1,8 +1,9 @@
+# TODO:WIP
 # SDE for .NET
 
-## TODO:Development template
+## Development template
 
-### Specs assembly
+### Specs
 
 A project starts from creating a "specs" assembly (e.g. Sde.Team.Specs).
 
@@ -16,3 +17,13 @@ Sample employments to develop:
 - Templates and generators (boilerplates, single-file templates, snippets). Something more close to Gatsby SSG (that works with structured content) that can go through the whole solution DOM. Sophisticated boilerplates (like ready to use admin portal).
 - Build/CI/CD.
 - Host documentation/collaboration server.
+
+### Ubiquitous language
+
+Right in the [Specs assembly](#specs) we can start to layout our ideas. And better to start them from defining vocabulary what is frequently called "ubiquotous language".
+
+Notes:
+* I think we can simply have a convention of single-word-class for defining term in this language.
+* Consider idea of a close-to-complete elimination of classes (primarily use interfaces) and put them into IoC like we regulary do this for services. 
+* Category-style of request handling. Better to have multi-dimensional in IoC, but HttpRequest<T> &rarr; JsonRequest<T> &rarr; ValidRequest<T> &rarr; DbRequest<T> &rarr; ... also worth to consider.
+* InBox namespace is also a good option to put any stuff we don't know where to put yet. Inside code can be greouped by some namespaces.
