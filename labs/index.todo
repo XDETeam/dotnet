@@ -1,0 +1,3 @@
+* Avoid usage of meta-attributes when they create additional reason for change
+  (SRP) and are not reusable. We are developers and such monkey things are
+  barely programmable.
