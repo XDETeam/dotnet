@@ -1,4 +1,4 @@
-﻿namespace Sde.Social
+﻿namespace Sde.InBox.Social
 {
     public class ProfileSample
     {

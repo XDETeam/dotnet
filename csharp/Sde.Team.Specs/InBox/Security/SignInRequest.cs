@@ -1,4 +1,4 @@
-﻿namespace Sde.Security
+﻿namespace Sde.InBox.Security
 {
     public class SignInRequest
     {
