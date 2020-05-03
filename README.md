@@ -1,1 +1,1 @@
-TODO:SDD library for .NET
+TODO:SDE library for .NET
