@@ -5,6 +5,11 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>Sde</RootNamespace>
     <LangVersion>8.0</LangVersion>
+    <Version>0.0.1</Version>
+    <Authors>Stanislav S. Yarmonov</Authors>
+    <Company>SDE Team</Company>
+    <Product>SDE Team Specification</Product>
+    <Description>Specification for SDE Team application.</Description>
   </PropertyGroup>
 
   <ItemGroup>
