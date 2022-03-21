@@ -8,6 +8,8 @@
 		<RootNamespace>Xde</RootNamespace>
 	</PropertyGroup>
 
+	<Import Project="..\..\ops\Version.Props" />
+
 	<ItemGroup>
 	  <ProjectReference Include="..\Xde.Labs\Xde.Labs.csproj" />
 	</ItemGroup>
