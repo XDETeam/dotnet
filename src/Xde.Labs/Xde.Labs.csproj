@@ -11,14 +11,4 @@
 	</PropertyGroup>
 	
 	<Import Project="..\..\ops\Version.Props" />
-
-	<Target
-		Name="Push to local repo"
-		AfterTargets="Build"
-		Condition=" '$(XDE_NUGET_LOCAL)' != '' "
-	>
-		<Message Importance="High" Text="Pushing package to $(XDE_NUGET_LOCAL)" />
-		<Message Importance="high" Text="$([System.DateTime]::UtcNow.ToString('yyMMdd.HHmmss'))"/>
-	</Target>
-
 </Project>

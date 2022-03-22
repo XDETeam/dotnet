@@ -1,2 +1,9 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using System.Reflection;
+
+var version = typeof(Program)
+    .Assembly
+    ?.GetCustomAttribute<AssemblyInformationalVersionAttribute>()
+    ?.InformationalVersion
+;
+
+Console.WriteLine($"XDE Spec. Version {version}");
