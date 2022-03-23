@@ -1,4 +1,4 @@
 @{
-    Version = "0.0.1-alpha"
+    Version = "0.0.2-alpha"
     Authors = "XDE.Team"
 }
