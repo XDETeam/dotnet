@@ -8,9 +8,10 @@
 /// Network port exposed from container.
 /// </remarks>
 public class ContainerPort
+    : IContainerResource
 {
-    //TODO:Implement INameResource/IContainerResource interface?
-    public string ServiceName { get; set; }
+    string IContainerResource.Name { get; set; }
+
 
     public int Port { get; set; }
 
@@ -23,7 +24,7 @@ public class ContainerPort
 
     public ContainerPort(string serviceName, int port, string description = null)
     {
-        ServiceName = serviceName;
+        (this as IContainerResource).Name = serviceName;
         Port = port;
         Description = description;
     }

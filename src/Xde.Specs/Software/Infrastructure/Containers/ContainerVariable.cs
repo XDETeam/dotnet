@@ -1,8 +1,9 @@
 ﻿namespace Xde.Software.Infrastructure.Containers;
 
 public class ContainerVariable
+    : IContainerResource
 {
-    public string Name { get; set; }
+    string IContainerResource.Name { get; set; }
 
     public string Value { get; set; }
 
@@ -10,7 +11,7 @@ public class ContainerVariable
 
     public ContainerVariable(string name, string value, string description = null)
     {
-        Name = name;
+        (this as IContainerResource).Name = name;
         Value = value;
         Description = description;
     }
