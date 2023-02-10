@@ -3,6 +3,7 @@
 namespace Xde.Software.Clickhouse;
 
 public class ClickhouseService
+    : IService
 {
     public const string Description = "Clickhouse database server";
 
