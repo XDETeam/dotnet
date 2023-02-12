@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Xde.Software.Standards;
+﻿namespace Xde.Software.Standards;
 
 /// <remarks>
 /// TODO:Specs concept can also have a validation code.
+/// TODO:Base of All-as-a-Code principle. E.g. use text-based (xml,json,etc) confiruation
+/// files as less as possible.
 /// </remarks>
 public class SpecsConcept
 {
