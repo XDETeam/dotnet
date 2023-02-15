@@ -1,4 +1,4 @@
-﻿namespace Xde.Software.Data;
+﻿namespace Xde.Data;
 
 /// <summary>
 /// Entity

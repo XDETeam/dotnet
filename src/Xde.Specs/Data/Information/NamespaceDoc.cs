@@ -1,10 +1,7 @@
 ﻿using System.Runtime.CompilerServices;
 
-namespace Xde.Software.Data;
+namespace Xde.Data.Information;
 
-/// <summary>
-/// Data models
-/// </summary>
 [CompilerGenerated]
 internal class NamespaceDoc
 {
