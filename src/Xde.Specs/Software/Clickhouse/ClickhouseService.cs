@@ -1,4 +1,6 @@
-﻿using Xde.Software.Infrastructure.Services;
+﻿using Xde.Software.Deployment;
+using Xde.Software.Infrastructure;
+using Xde.Software.Infrastructure.Services;
 
 namespace Xde.Software.Clickhouse;
 
@@ -25,4 +27,9 @@ public class ClickhouseService
     };
 
     public const string DockerImage = "docker.io/clickhouse/clickhouse-server";
+
+    public ClickhouseService(IDeploymentConfiguration configuration)
+    {
+        
+    }
 }

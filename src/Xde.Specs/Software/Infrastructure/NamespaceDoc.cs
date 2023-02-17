@@ -7,7 +7,7 @@ namespace Xde.Software.Infrastructure;
 /// </summary>
 /// 
 /// <remarks>
-/// TODO:Temporary (?) included sample here <see cref="XdeInfrastructureSample"/>
+/// TODO:Temporary (?) included sample here <see cref="XdeArchitectureSample"/>
 /// </remarks>
 [CompilerGenerated]
 internal class NamespaceDoc
