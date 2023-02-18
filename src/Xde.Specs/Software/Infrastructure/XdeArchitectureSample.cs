@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Xde.Software.Clickhouse;
+﻿using Xde.Software.Clickhouse;
 using Xde.Software.Kafka;
 
 namespace Xde.Software.Infrastructure;
@@ -10,9 +9,9 @@ namespace Xde.Software.Infrastructure;
 public class XdeArchitectureSample
     : Architecture
 {
-    public override void Define()
+    public XdeArchitectureSample()
     {
-        Services.AddSingleton<ClickhouseService>();
-        Services.AddSingleton<KafkaService>();
+        Add<ClickhouseService>();
+        Add<KafkaService>();
     }
 }
