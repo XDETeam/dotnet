@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using Xde.Software.Infrastructure;
 using Xde.Software.Kubernetes;
+using Xde.Software.Specs;
 
 var version = typeof(Program)
     .Assembly
@@ -17,6 +18,8 @@ Console.WriteLine($"XDE Spec. Version {version}");
 //    .ToArray()
 //;
 
-Console.WriteLine(KubernetesManifestGenerator.Generate<XdeArchitectureSample>());
+//Console.WriteLine(KubernetesManifestGenerator.Generate<XdeArchitectureSample>());
+
+SpecsServer.Open();
 
 return 0;
