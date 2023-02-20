@@ -20,6 +20,6 @@ Console.WriteLine($"XDE Spec. Version {version}");
 
 //Console.WriteLine(KubernetesManifestGenerator.Generate<XdeArchitectureSample>());
 
-SpecsServer.Open();
+SpecsServer.Open("/xml/test");
 
 return 0;

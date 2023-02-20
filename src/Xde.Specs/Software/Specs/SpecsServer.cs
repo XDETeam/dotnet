@@ -1,7 +1,8 @@
 ﻿using System.Diagnostics;
+using System.Reflection;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Hosting.Server.Features;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -12,7 +13,7 @@ public class SpecsServer
     private readonly WebApplicationBuilder _builder;
     private readonly WebApplication _app;
 
-    public void Run(bool openBrowser = true)
+    public void Run(bool openBrowser = true, string? path = null)
     {
         _app.StartAsync();
 
@@ -26,9 +27,11 @@ public class SpecsServer
         //TODO:Take the real URL from the server
         if (serverAddress != null && openBrowser)
         {
+            var uri = new Uri(new Uri(serverAddress), path);
+
             Process.Start(new ProcessStartInfo
             {
-                FileName = serverAddress,
+                FileName = uri.ToString(),
                 UseShellExecute = true
             });
         }
@@ -44,8 +47,20 @@ public class SpecsServer
 
         _app = _builder.Build();
 
-        _app.MapGet("/", () => "Hello World!");
+        // TODO:This value and calculation is already used in CLI, so would be better
+        // to share environment. Probably through CLI commands in DI.
+        var version = typeof(Program)
+            .Assembly
+            ?.GetCustomAttribute<AssemblyInformationalVersionAttribute>()
+            ?.InformationalVersion
+        ;
+
+        _app.MapGet("/", () => $"XDE Spec. Version {version}");
+        _app.MapGet("/xml/{path}", async (HttpContext context, string path) =>
+        {
+            await context.Response.WriteAsync($"XML: {path}!");
+        });
     }
 
-    public async static void Open() => new SpecsServer().Run();
+    public async static void Open(string? path = null) => new SpecsServer().Run(path: path);
 }
