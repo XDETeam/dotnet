@@ -1,4 +1,5 @@
-﻿using Xde.Software.Deployment;
+﻿using Microsoft.Extensions.Configuration;
+using Xde.Software.Deployment;
 using Xde.Software.Infrastructure;
 using Xde.Software.Infrastructure.Services;
 
@@ -28,7 +29,8 @@ public class ClickhouseService
 
     public const string DockerImage = "docker.io/clickhouse/clickhouse-server";
 
-    public ClickhouseService(IDeploymentConfiguration configuration)
+    //TODO:public ClickhouseService(IDeploymentConfiguration configuration)
+    public ClickhouseService(IConfiguration configuration)
     {
         
     }

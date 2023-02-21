@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Hosting.Server.Features;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Xde.Software.Clickhouse;
+using Xde.Software.Infrastructure;
 
 namespace Xde.Software.Specs;
 
@@ -45,6 +47,9 @@ public class SpecsServer
             .CreateBuilder()
         ;
 
+        var architecture = new XdeArchitectureSample();
+        architecture.Compose(_builder.Services);
+
         _app = _builder.Build();
 
         // TODO:This value and calculation is already used in CLI, so would be better
@@ -56,9 +61,10 @@ public class SpecsServer
         ;
 
         _app.MapGet("/", () => $"XDE Spec. Version {version}");
-        _app.MapGet("/xml/{path}", async (HttpContext context, string path) =>
+        _app.MapGet("/infrastructure/{path}", async (HttpContext context, string path, ClickhouseService clickhouse) =>
         {
-            await context.Response.WriteAsync($"XML: {path}!");
+
+            await context.Response.WriteAsync($"XML: {clickhouse.ToString()}!");
         });
     }
 

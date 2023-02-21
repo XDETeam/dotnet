@@ -1,4 +1,6 @@
-﻿using Xde.Software.Clickhouse;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Xde.Software.Clickhouse;
+using Xde.Software.Composition;
 using Xde.Software.Kafka;
 
 namespace Xde.Software.Infrastructure;
@@ -7,11 +9,11 @@ namespace Xde.Software.Infrastructure;
 /// TODO:Sample of XDE infrastructure
 /// </summary>
 public class XdeArchitectureSample
-    : Architecture
+    : IComposition
 {
-    public XdeArchitectureSample()
+    public void Compose(IServiceCollection services)
     {
-        Add<ClickhouseService>();
-        Add<KafkaService>();
+        services.AddSingleton<ClickhouseService>();
+        services.AddSingleton<KafkaService>();
     }
 }
