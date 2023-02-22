@@ -1,4 +1,4 @@
-﻿using Xde.Software.Deployment;
+﻿using Microsoft.Extensions.Configuration;
 using Xde.Software.Infrastructure.Services;
 
 namespace Xde.Software.Kafka;
@@ -6,7 +6,8 @@ namespace Xde.Software.Kafka;
 public class KafkaService
     : IService
 {
-    public KafkaService(IDeploymentConfiguration configuration)
+    //TODO:public KafkaService(IDeploymentConfiguration configuration)
+    public KafkaService(IConfiguration configuration)
     {
 
     }

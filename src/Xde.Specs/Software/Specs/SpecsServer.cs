@@ -3,10 +3,12 @@ using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting.Server.Features;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Xde.Software.Clickhouse;
 using Xde.Software.Infrastructure;
+using Xde.Software.Infrastructure.Services;
 
 namespace Xde.Software.Specs;
 
@@ -61,11 +63,18 @@ public class SpecsServer
         ;
 
         _app.MapGet("/", () => $"XDE Spec. Version {version}");
-        _app.MapGet("/infrastructure/{path}", async (HttpContext context, string path, ClickhouseService clickhouse) =>
-        {
+        _app.MapGet(
+            "/infrastructure/{path}",
+            async (
+                HttpContext context,
+                string path,
+                ServiceCatalog services,
+                [FromServices]ClickhouseService clickhouse
+            ) => {
 
-            await context.Response.WriteAsync($"XML: {clickhouse.ToString()}!");
-        });
+                await context.Response.WriteAsync($"XML: {services}!");
+            }
+        );
     }
 
     public async static void Open(string? path = null) => new SpecsServer().Run(path: path);
