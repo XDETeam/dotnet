@@ -3,19 +3,25 @@ using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting.Server.Features;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Xde.Software.Clickhouse;
+using Xde.Software.Composition;
 using Xde.Software.Infrastructure;
 using Xde.Software.Infrastructure.Services;
+using Xde.Software.Specs.Handlers;
 
 namespace Xde.Software.Specs;
 
 public class SpecsServer
+    : IComposition
 {
     private readonly WebApplicationBuilder _builder;
     private readonly WebApplication _app;
+
+    void IComposition.Compose(IServiceCollection services)
+    {
+        services.AddSingleton<ISpecsRouteHandler, SpecsInfrastructureHandler>();
+    }
 
     public void Run(bool openBrowser = true, string? path = null)
     {
@@ -52,6 +58,8 @@ public class SpecsServer
         var architecture = new XdeArchitectureSample();
         architecture.Compose(_builder.Services);
 
+        (this as IComposition).Compose(_builder.Services);
+
         _app = _builder.Build();
 
         // TODO:This value and calculation is already used in CLI, so would be better
@@ -63,18 +71,21 @@ public class SpecsServer
         ;
 
         _app.MapGet("/", () => $"XDE Spec. Version {version}");
-        _app.MapGet(
-            "/infrastructure/{path}",
-            async (
-                HttpContext context,
-                string path,
-                ServiceCatalog services,
-                [FromServices]ClickhouseService clickhouse
-            ) => {
+        //_app.MapGet(
+        //    "/infrastructure/{path}",
+        //    async (
+        //        HttpContext context,
+        //        string path,
+        //        ServiceCatalog services
+        //    ) => {
 
-                await context.Response.WriteAsync($"XML: {services}!");
-            }
-        );
+        //        await context.Response.WriteAsync($"XML: {services}!");
+        //    }
+        //);
+        foreach (var routeHandler in _app.Services.GetRequiredService<IEnumerable<ISpecsRouteHandler>>())
+        {
+            routeHandler.Register(_app);
+        }
     }
 
     public async static void Open(string? path = null) => new SpecsServer().Run(path: path);
