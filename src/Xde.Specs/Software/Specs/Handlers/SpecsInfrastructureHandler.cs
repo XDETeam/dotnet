@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System.Linq;
+using System.Xml.Linq;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Xde.Software.Infrastructure.Services;
 
@@ -10,12 +12,26 @@ public class SpecsInfrastructureHandler
 
     public const string RouteName = "/infrastructure";
 
+    //TODO:Add shared namespace, etc
+    public static readonly XName XmlInfrastructure = XName.Get("infrastructure");
+    public static readonly XName XmlService = XName.Get("service");
+
     string ISpecsRouteHandler.Route => RouteName;
 
-    async private Task OnGet(HttpContext context, ServiceCatalog services)
+    async private Task OnGet(HttpContext context, ServiceCatalog catalog)
     {
-        //TODO:
-        await context.Response.WriteAsync($"SpecsInfrastructureHandler: {services}!");
+        var xml = new XDocument(
+            new XElement(
+                XmlInfrastructure,
+                catalog.Services
+                    .Select(service => new XElement(
+                        XmlService,
+                        new XText(service.ToString())
+                    ))
+            )
+        );
+
+        await context.Response.WriteAsync(xml.ToString());
     }
 
     void ISpecsRouteHandler.Register(WebApplication application)
