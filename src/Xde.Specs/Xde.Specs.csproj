@@ -12,6 +12,10 @@
 
 	<Import Project="..\..\ops\Version.Props" />
 
+	<ItemGroup>
+	  <None Remove="Software\Specs\Styles\main.xslt" />
+	</ItemGroup>
+
   <ItemGroup>
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
@@ -30,6 +34,10 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\Xde.Labs\Xde.Labs.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+    <EmbeddedResource Include="Software\Specs\Styles\main.xslt" />
 	</ItemGroup>
 
 </Project>

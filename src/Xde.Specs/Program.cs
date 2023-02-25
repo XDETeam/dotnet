@@ -2,6 +2,8 @@
 using Xde.Software.Specs;
 using Xde.Software.Specs.Handlers;
 
+// TODO:Inject into DI and make startup very simple, compose commands, all composition, etc
+// from selected assemblies. So smth like App.Compose<...settings...>().Run();
 var version = typeof(Program)
     .Assembly
     ?.GetCustomAttribute<AssemblyInformationalVersionAttribute>()
