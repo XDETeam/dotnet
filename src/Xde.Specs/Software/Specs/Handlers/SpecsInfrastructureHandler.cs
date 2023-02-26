@@ -1,5 +1,4 @@
-﻿using System.Net.Http.Headers;
-using System.Text;
+﻿using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.XPath;
@@ -7,6 +6,7 @@ using System.Xml.Xsl;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Xde.Software.Infrastructure.Services;
+using Xde.Software.Specs.Styles;
 
 namespace Xde.Software.Specs.Handlers;
 
@@ -19,6 +19,8 @@ public class SpecsInfrastructureHandler
     //TODO:Add shared namespace, etc
     public static readonly XName XmlInfrastructure = XName.Get("infrastructure");
     public static readonly XName XmlService = XName.Get("service");
+
+    private readonly IXslStyleProvider _styleProvider;
 
     string ISpecsRouteHandler.Route => RouteName;
 
@@ -35,15 +37,8 @@ public class SpecsInfrastructureHandler
             )
         );
 
-        // TODO:Exctract (ISpecsRouteHandler) and cache. Maybe cache XslCompiledTransform.
-        var test1 = GetType().Assembly.GetManifestResourceNames();
         //TODO:Shortcut the resource path, maybe using type or some prefix/extension/resource interface
-        using var stream = GetType().Assembly.GetManifestResourceStream("Xde.Software.Specs.Styles.main.xslt");
-        using var reader = XmlReader.Create(stream);
-
-        //TODO:var xslt = new XslTransform();
-        var xslt = new XslCompiledTransform(); //TODO:Debug option can be enabled
-        xslt.Load(reader);
+        var xslt = _styleProvider.Get("main");
 
         var args = new XsltArgumentList();
 
@@ -65,5 +60,10 @@ public class SpecsInfrastructureHandler
     void ISpecsRouteHandler.Register(WebApplication application)
     {
         application.MapGet(RouteName, OnGet);
+    }
+
+    public SpecsInfrastructureHandler(IXslStyleProvider styleProvider)
+    {
+        _styleProvider = styleProvider;
     }
 }

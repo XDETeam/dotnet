@@ -2,13 +2,12 @@
 using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting.Server.Features;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Xde.Software.Composition;
 using Xde.Software.Infrastructure;
-using Xde.Software.Infrastructure.Services;
 using Xde.Software.Specs.Handlers;
+using Xde.Software.Specs.Styles;
 
 namespace Xde.Software.Specs;
 
@@ -20,6 +19,10 @@ public class SpecsServer
 
     void IComposition.Compose(IServiceCollection services)
     {
+        //TODO:Not the right place?
+        services.AddMemoryCache();
+
+        services.AddSingleton<IXslStyleProvider, XslStyleProvider>();
         services.AddSingleton<ISpecsRouteHandler, SpecsInfrastructureHandler>();
     }
 
@@ -71,17 +74,6 @@ public class SpecsServer
         ;
 
         _app.MapGet("/", () => $"XDE Spec. Version {version}");
-        //_app.MapGet(
-        //    "/infrastructure/{path}",
-        //    async (
-        //        HttpContext context,
-        //        string path,
-        //        ServiceCatalog services
-        //    ) => {
-
-        //        await context.Response.WriteAsync($"XML: {services}!");
-        //    }
-        //);
         foreach (var routeHandler in _app.Services.GetRequiredService<IEnumerable<ISpecsRouteHandler>>())
         {
             routeHandler.Register(_app);
