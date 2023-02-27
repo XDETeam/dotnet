@@ -1,6 +1,4 @@
 ﻿using Microsoft.Extensions.Configuration;
-using Xde.Software.Deployment;
-using Xde.Software.Infrastructure;
 using Xde.Software.Infrastructure.Services;
 
 namespace Xde.Software.Clickhouse;

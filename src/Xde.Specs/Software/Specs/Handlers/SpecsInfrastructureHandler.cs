@@ -20,9 +20,12 @@ public class SpecsInfrastructureHandler
     public static readonly XName XmlInfrastructure = XName.Get("infrastructure");
     public static readonly XName XmlService = XName.Get("service");
 
-    private readonly IXslStyleProvider _styleProvider;
+    private readonly IXslStyleProvider _styles;
 
     string ISpecsRouteHandler.Route => RouteName;
+
+    //TODO:Experimental extensions object method
+    public string TestExtention() => "OK";
 
     async private Task OnGet(HttpContext context, ServiceCatalog catalog)
     {
@@ -38,9 +41,13 @@ public class SpecsInfrastructureHandler
         );
 
         //TODO:Shortcut the resource path, maybe using type or some prefix/extension/resource interface
-        var xslt = _styleProvider.Get("main");
+        var xslt = _styles.Get("main");
 
         var args = new XsltArgumentList();
+        // TODO:Experimental object. Maybe introduce specific interface for such object that can
+        // navigate through specs and return them as XML. Or dynamic object. That probably will be
+        // better for debugging.
+        args.AddExtensionObject("urn:xde-service-provider", this);
 
         //TODO:Sync version does not work well
         //TODO:Notices that in some callstacks "System.Xml.Xsl.XsltOld" mentioned. Probably there are new :)
@@ -62,8 +69,8 @@ public class SpecsInfrastructureHandler
         application.MapGet(RouteName, OnGet);
     }
 
-    public SpecsInfrastructureHandler(IXslStyleProvider styleProvider)
+    public SpecsInfrastructureHandler(IXslStyleProvider styles)
     {
-        _styleProvider = styleProvider;
+        _styles = styles;
     }
 }
