@@ -21,6 +21,9 @@
   </ItemGroup>
   
 	<ItemGroup>
+	  <PackageReference Include="BenchmarkDotNet" Version="0.13.5" />
+	  <PackageReference Include="ClickHouse.Client" Version="6.5.0" />
+	  <PackageReference Include="Docker.DotNet" Version="3.125.13" />
 	  <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
 	  <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
 	  <PackageReference Include="NSubstitute" Version="5.0.0" />
