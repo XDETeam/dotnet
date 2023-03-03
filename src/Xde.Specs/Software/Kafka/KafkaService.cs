@@ -7,8 +7,5 @@ public class KafkaService
     : IService
 {
     //TODO:public KafkaService(IDeploymentConfiguration configuration)
-    public KafkaService(IConfiguration configuration)
-    {
-
-    }
+    // public KafkaService(IConfiguration configuration)
 }

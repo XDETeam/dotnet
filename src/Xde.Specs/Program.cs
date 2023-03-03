@@ -1,4 +1,6 @@
 ﻿using System.Reflection;
+using Xde.Software.Infrastructure;
+using Xde.Software.Kubernetes;
 
 // TODO:Inject into DI and make startup very simple, compose commands, all composition, etc
 // from selected assemblies. So smth like App.Compose<...settings...>().Run();
@@ -19,7 +21,7 @@ Console.WriteLine($"XDE Spec. Version {version}");
 //;
 
 // TODO:K8s manifests generator ////////////////////////////////////////////////
-// Console.WriteLine(KubernetesManifestGenerator.Generate<XdeArchitectureSample>());
+Console.WriteLine(KubernetesManifestGenerator.Generate<XdeArchitectureSample>());
 
 // TODO:Specs server experiments ///////////////////////////////////////////////
 // SpecsServer.Open(SpecsInfrastructureHandler.RouteName);

@@ -1,38 +1,41 @@
-﻿//TODO:
-//using Microsoft.Extensions.DependencyInjection;
-//using Xde.Software.Clickhouse;
-//using Xde.Software.Infrastructure;
-//using Xde.Software.Infrastructure.Services;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Xde.Software.Clickhouse;
+using Xde.Software.Composition;
+using Xde.Software.Infrastructure.Services;
 
-//namespace Xde.Software.Kubernetes;
+namespace Xde.Software.Kubernetes;
 
-//public class KubernetesManifestGenerator
-//{
-//    /// <summary>
-//    /// TODO:
-//    /// </summary>
-//    /// <param name="architecture"></param>
-//    /// <returns></returns>
-//    /// 
-//    /// <remarks>
-//    /// TODO: Replace with generation into virtual filesystem
-//    /// </remarks>
-//    public string Generate(Architecture architecture)
-//    {
-//        var provider = architecture.Services.BuildServiceProvider();
-//        var services = provider.GetService<IService>();
-//        var clickhouse = provider.GetService<ClickhouseService>();
+public class KubernetesManifestGenerator
+{
+    /// <summary>
+    /// TODO:
+    /// </summary>
+    /// <param name="architecture"></param>
+    /// <returns></returns>
+    /// 
+    /// <remarks>
+    /// TODO: Replace with generation into virtual filesystem
+    /// </remarks>
+    public string Generate(IComposition composition)
+    {
+        var services = new ServiceCollection();
+        composition.Compose(services);
 
-//        return string.Empty;
-//    }
+        var provider = services.BuildServiceProvider();
 
-//    public static string Generate<T>()
-//        where T : Architecture, new()
-//    {
-//        var generator = new KubernetesManifestGenerator();
+        var appServices = provider.GetService<IService>();
+        var ports = provider.GetService<IServicePorts<ClickhouseService>>();
 
-//        var architecture = new T();
+        return string.Empty;
+    }
 
-//        return generator.Generate(architecture);
-//    }
-//}
+    public static string Generate<T>()
+        where T : IComposition, new()
+    {
+        var generator = new KubernetesManifestGenerator();
+
+        var architecture = new T();
+
+        return generator.Generate(architecture);
+    }
+}

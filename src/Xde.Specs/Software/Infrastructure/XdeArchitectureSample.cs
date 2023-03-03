@@ -14,8 +14,7 @@ public class XdeArchitectureSample
 {
     public void Compose(IServiceCollection services)
     {
-        services.AddSingleton<ClickhouseService>();
-        services.AddTransient<IService>(provider => provider.GetRequiredService<ClickhouseService>());
+        services.Compose<ClickhouseComposition>();
 
         services.AddSingleton<KafkaService>();
         services.AddTransient<IService>(provider => provider.GetRequiredService<KafkaService>());
