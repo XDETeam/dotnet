@@ -25,6 +25,7 @@ public class KubernetesManifestGenerator
 
         var appServices = provider.GetService<IService>();
         var ports = provider.GetService<IServicePorts<ClickhouseService>>();
+        var vars = provider.GetService<IServiceVariables<ClickhouseService>>();
 
         return string.Empty;
     }

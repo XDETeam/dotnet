@@ -15,6 +15,9 @@ public class ClickhouseComposition
         services.AddTransient<IServicePorts<ClickhouseService>>(
             provider => provider.GetRequiredService<ClickhouseService>()
         );
+        services.AddTransient<IServiceVariables<ClickhouseService>>(
+            provider => provider.GetRequiredService<ClickhouseService>()
+        );
         services.AddTransient<IService>(provider => provider.GetRequiredService<ClickhouseService>());
     }
 }

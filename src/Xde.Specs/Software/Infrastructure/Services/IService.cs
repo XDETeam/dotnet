@@ -2,5 +2,5 @@
 
 public interface IService
 {
-
+    //TODO:Include name/description here?
 }
