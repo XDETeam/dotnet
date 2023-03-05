@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 using Xde.Software.Infrastructure;
-using Xde.Software.Kubernetes;
+using Xde.Software.Orchestration.Kubernetes;
 
 // TODO:Inject into DI and make startup very simple, compose commands, all composition, etc
 // from selected assemblies. So smth like App.Compose<...settings...>().Run();

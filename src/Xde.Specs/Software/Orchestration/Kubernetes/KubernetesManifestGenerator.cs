@@ -3,7 +3,7 @@ using Xde.Software.Clickhouse;
 using Xde.Software.Composition;
 using Xde.Software.Infrastructure.Services;
 
-namespace Xde.Software.Kubernetes;
+namespace Xde.Software.Orchestration.Kubernetes;
 
 public class KubernetesManifestGenerator
 {
