@@ -2,6 +2,7 @@
 using Xde.Software.Clickhouse;
 using Xde.Software.Composition;
 using Xde.Software.Infrastructure.Services;
+using Xde.Software.Virtualization;
 
 namespace Xde.Software.Orchestration.Kubernetes;
 
@@ -26,6 +27,7 @@ public class KubernetesManifestGenerator
         var appServices = provider.GetService<IService>();
         var ports = provider.GetService<IServicePorts<ClickhouseService>>();
         var vars = provider.GetService<IServiceVariables<ClickhouseService>>();
+        var container = provider.GetService<IServiceContainer<ClickhouseService>>();
 
         return string.Empty;
     }

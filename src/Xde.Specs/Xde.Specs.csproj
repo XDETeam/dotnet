@@ -43,8 +43,4 @@
     <EmbeddedResource Include="Software\Specs\Styles\main.xslt" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Software\Virtualization\" />
-	</ItemGroup>
-
 </Project>

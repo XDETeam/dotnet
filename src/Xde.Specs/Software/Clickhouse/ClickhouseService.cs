@@ -1,4 +1,5 @@
 ﻿using Xde.Software.Infrastructure.Services;
+using Xde.Software.Virtualization;
 
 namespace Xde.Software.Clickhouse;
 
@@ -6,10 +7,9 @@ public class ClickhouseService
     : IService
     , IServicePorts<ClickhouseService>
     , IServiceVariables<ClickhouseService>
+    , IServiceContainer<ClickhouseService>
 {
     public const string Description = "Clickhouse database server";
-
-    public const string DockerImage = "docker.io/clickhouse/clickhouse-server";
 
     //TODO:public ClickhouseService(IDeploymentConfiguration configuration)
     //public ClickhouseService(IConfiguration configuration)
@@ -22,6 +22,7 @@ public class ClickhouseService
         new("CLICKHOUSE_PASSWORD", "clickhouse-test-password"),
     };
 
+    /// <inheritdoc />
     EnvironmentVariable[] IServiceVariables<ClickhouseService>.Variables => _vars;
     #endregion -----------------------------------------------------------------
 
@@ -37,5 +38,13 @@ public class ClickhouseService
 
     /// <inheritdoc />
     ServicePort[] IServicePorts<ClickhouseService>.Ports => _ports;
+    #endregion -----------------------------------------------------------------
+
+    #region -- IServiceContainer<ClickhouseService> implementation -------------
+    /// <inheritdoc />
+    string IServiceContainer<ClickhouseService>.Image => "docker.io/clickhouse/clickhouse-server";
+
+    /// <inheritdoc />
+    string IServiceContainer<ClickhouseService>.Version => "22.3";
     #endregion -----------------------------------------------------------------
 }
