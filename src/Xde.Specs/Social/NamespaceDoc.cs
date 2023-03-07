@@ -1,9 +1,9 @@
 ﻿using System.Runtime.CompilerServices;
 
-namespace Xde.Data;
+namespace Xde.Social;
 
 /// <summary>
-/// Data engineering
+/// Social engineering
 /// </summary>
 [CompilerGenerated]
 internal class NamespaceDoc

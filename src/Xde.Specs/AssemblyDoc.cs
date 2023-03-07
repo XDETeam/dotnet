@@ -10,6 +10,8 @@
 /// TODO:A good platform to test "Specs" concept, which is a way to implement
 /// "All-is-a-Code" idea. "Specs" is also kinda "One ring".
 /// 
+/// TODO:Namespaces can be aligned to the engineering fields of XDE.Team.
+/// 
 /// TODO:Implement README.md generation from the document like this.
 /// </remarks>
 public class AssemblyDoc
