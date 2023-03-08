@@ -1,6 +1,7 @@
-﻿using Xunit;
+﻿using Xde.Flow;
+using Xunit;
 
-namespace Xde.Flow
+namespace Xde.Process.Flow
 {
     public class DisposableChainSpecs
     {

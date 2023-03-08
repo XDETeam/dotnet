@@ -8,6 +8,7 @@ using Xde.Software.Composition;
 using Xde.Software.Infrastructure;
 using Xde.Software.Specs.Handlers;
 using Xde.Software.Specs.Styles;
+using ApplicationProcess = System.Diagnostics.Process;
 
 namespace Xde.Software.Specs;
 
@@ -42,7 +43,7 @@ public class SpecsServer
         {
             var uri = new Uri(new Uri(serverAddress), path);
 
-            Process.Start(new ProcessStartInfo
+            ApplicationProcess.Start(new ProcessStartInfo
             {
                 FileName = uri.ToString(),
                 UseShellExecute = true
